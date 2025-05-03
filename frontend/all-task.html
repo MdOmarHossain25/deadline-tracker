@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>All Tasks</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="wrapper">
+    <h1>📋 All Tasks</h1>
+    <ul id="allTaskList" class="task-list"></ul>
+    <a href="index.html" style="text-align:center; display:block; margin-top:20px;">← Back to Tracker</a>
+  </div>
+
+  <script>
+    async function loadAllTasks() {
+      const res = await fetch('http://localhost:3000/tasks');
+      const tasks = await res.json();
+
+      const list = document.getElementById('allTaskList');
+      list.innerHTML = '';
+
+      tasks.sort((a, b) => new Date(`${a.date}T${a.time}`) - new Date(`${b.date}T${b.time}`));
+
+      tasks.forEach(task => {
+        const li = document.createElement('li');
+        li.className = 'task-item';
+        li.textContent = `${task.name} - ${task.date} ${task.time}`;
+        const taskDateTime = new Date(`${task.date}T${task.time}`);
+        if (taskDateTime < new Date()) {
+          li.style.borderLeft = '4px solid red';
+        }
+        list.appendChild(li);
+      });
+    }
+
+    loadAllTasks();
+  </script>
+</body>
+</html>
