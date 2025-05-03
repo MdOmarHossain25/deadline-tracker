@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Work Deadline Tracker</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="wrapper">
+    <h1>📅 Work Deadline Tracker</h1>
+    <form id="taskForm">
+      <input type="text" id="taskInput" placeholder="Task name" required />
+      <input type="date" id="dateInput" required />
+      <input type="time" id="timeInput" required />
+      <button type="submit">➕ Add Task</button>
+    </form>
+    
+    <ul id="taskList" class="task-list"></ul>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
